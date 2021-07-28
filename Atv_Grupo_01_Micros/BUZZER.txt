@@ -1,0 +1,31 @@
+BUZZER
+    MOVLW .200 
+        MOVWF TEMP2
+	    
+	L1
+	    RCALL ATRASO_1ms
+	    RCALL ATRASO_1ms
+	    RCALL ATRASO_1ms
+	    RCALL ATRASO_1ms
+	    RCALL ATRASO_1ms
+	    DECFSZ TEMP2
+	    BRA L1
+	    
+	BSF PORTC, 2	;liga o buzzer dps de 1sec, buzzer conectado em RC2
+	    MOVLW .250
+	    MOVWF TEMP2
+	    L2
+		RCALL ATRASO_1ms
+		DECFSZ TEMP2
+		BRA L2
+            
+	    BCF PORTC, 2
+	    
+	    BTFSC PORTC, 0
+	    GOTO START
+	    
+	    BTFSC PORTC, 1
+	    GOTO START
+	    
+	    
+    BRA BUZZER

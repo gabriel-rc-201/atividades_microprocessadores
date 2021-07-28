@@ -1,0 +1,37 @@
+MPASM 5.83  /HOME/GABRIEL/MPLABXPROJECTS/ATV   5-4-2019  18:32:56         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ; TODO INSERT CONFIG CODE HERE USING CONFIG BITS GENERATOR
+                      00002 
+                      00003 
+                      00004     
+                      00005 RES_VECT  CODE    0x0000            ; processor reset vector
+000000 EF?? F???      00006     GOTO    START                   ; go to beginning of program
+                      00007 
+                      00008 ; TODO ADD INTERRUPTS HERE IF USED
+                      00009 
+                      00010 MAIN_PROG CODE                      ; let linker place main program
+                      00011 
+000000                00012 START
+                      00013 
+000000 EF?? F???      00014     GOTO $                          ; loop forever
+                      00015 
+                      00016     END
+MPASM 5.83  /HOME/GABRIEL/MPLABXPROJECTS/ATV   5-4-2019  18:32:56         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+START                             00000000
+_MAIN_PROG_0000                   00000000
+__18F4550                         00000001
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

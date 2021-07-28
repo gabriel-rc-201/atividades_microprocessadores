@@ -1,0 +1,74 @@
+MPASM 5.83  /HOME/GABRIEL/MPLABXPROJECTS/ATV   5-4-2019  21:35:29         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ; TODO INSERT CONFIG CODE HERE USING CONFIG BITS GENERATOR
+                      00002 
+                      00003 variaveis udata_acs 0x20  ;reservando espaço de memória para as variaveis
+Warning[207]: Found label after column 1. (N1)
+000020                00004     N1 RES 2    ;variavel 1 16bits
+Warning[207]: Found label after column 1. (N2)
+000022                00005     N2 RES 2    ;variavel 2 16bits
+Warning[207]: Found label after column 1. (RESULTADO)
+000024                00006     RESULTADO RES 2         ;resultado 16bits
+                      00007 
+                      00008     
+                      00009 RES_VECT  CODE    0x0000            ; processor reset vector
+000000 EF?? F???      00010     GOTO    START                   ; go to beginning of program
+                      00011 
+                      00012 ; TODO ADD INTERRUPTS HERE IF USED
+                      00013 
+                      00014 MAIN_PROG CODE                      ; let linker place main program
+                      00015 
+000000                00016 START
+                      00017  
+                      00018     ;setando os valores nas variaveis
+000000 0EFF           00019     MOVLW 0xFF  ;numero arbtrario da parte menos significativa
+000002 6E??           00020     MOVWF N1    ;menos significativo da variavel 1
+                      00021     
+000004 0EFF           00022     MOVLW 0xFF  ;numero arbtrario da parte mais significativa
+000006 6E??           00023     MOVWF N1+1  ;mais significativo da variavel 1
+                      00024     
+000008 0EFF           00025     MOVLW 0xFF  ;numero arbtrario da parte menos significativa
+00000A 6E??           00026     MOVWF N2    ;menos significativo da variavel 2
+                      00027     
+00000C 0EFF           00028     MOVLW 0xFF  ;numero arbtrario da parte mais significativa
+00000E 6E??           00029     MOVWF N2+1  ;mais significativo da variavel 2
+                      00030  
+000010 0E00           00031     MOVLW 0x00
+                      00032     
+000012 0000           00033     NOP                 ;ultilizado para parar utilizando o debuger
+                      00034     
+000014 5000           00035     MOVF N1, 0          ;move o valor armazenado em N1 para W
+000016 26??           00036     ADDWF N2            ;soma N2 e W e armazena em N2
+000018 5000           00037     MOVF N2, 0          ;move o valor armazenado em N2 para W
+00001A 6E??           00038     MOVWF RESULTADO     ;move o valor armazenado em W para RESULTADO
+                      00039     
+00001C 5000           00040     MOVF N1+1, 0        ;move o valor armazenado em N1+1 para W
+00001E 22??           00041     ADDWFC N2+1         ;soma N2+1 e W e armazena em N2+1
+000020 5000           00042     MOVF N2+1, 0        ;move o valor armazenado em N2+1 para W
+000022 6E??           00043     MOVWF RESULTADO+1   ;move o valor armazenado em W para RESULTADO+1
+                      00044 
+000024 0000           00045     NOP
+                      00046     END
+MPASM 5.83  /HOME/GABRIEL/MPLABXPROJECTS/ATV   5-4-2019  21:35:29         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+N1                                00000020
+N2                                00000022
+RESULTADO                         00000024
+START                             00000000
+__18F4550                         00000001
+__DEBUG                           
+__MPLAB_DEBUGGER_SIMULATOR        1
+
+Errors   :     0
+Warnings :     3 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

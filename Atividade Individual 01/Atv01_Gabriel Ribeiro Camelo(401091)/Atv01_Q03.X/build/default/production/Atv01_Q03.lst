@@ -1,0 +1,76 @@
+MPASM 5.83  /HOME/GABRIEL/MPLABXPROJECTS/ATV   5-4-2019  21:38:29         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ; PIC18F4550 Configuration Bit Settings
+                      00002 
+                      00003 ; Assembly source line config statements
+                      00004 
+                      00005     
+                      00006 ; TODO INSERT CONFIG CODE HERE USING CONFIG BITS GENERATOR
+                      00007 
+                      00008 RES_VECT  CODE    0x0000            ; processor reset vector
+000000 EF?? F???      00009     GOTO    START                   ; go to beginning of program
+                      00010 
+                      00011 VARIAVEIS UDATA_ACS 0x20
+Warning[207]: Found label after column 1. (NUM)
+000020                00012     NUM RES 1       ;variavel que eu vou somar os 4 primeros bits com os 4 segundos bits
+Warning[207]: Found label after column 1. (LNUM)
+000021                00013     LNUM RES 1      ;armazenar os bits menos significativos de de NUM
+Warning[207]: Found label after column 1. (MNUM)
+000022                00014     MNUM RES 1      ;armazenar os bits mais significativos de de NUM
+Warning[207]: Found label after column 1. (RESULT)
+000023                00015     RESULT RES 1    ;armazena o resultado da soma dos 
+                      00016     ;4 bits mais significativos com os 4 bits menos significativos
+                      00017  
+                      00018 ; TODO ADD INTERRUPTS HERE IF USED
+                      00019 
+                      00020 MAIN_PROG CODE                      ; let linker place main program
+                      00021 
+000000                00022 START
+                      00023     
+000000 0000           00024     NOP                 ;ultilizado como ponto de referencia para iniciar o debuger
+                      00025  
+000002 0EC3           00026     MOVLW 0xC3          ;move 33 em hexadecimal para W
+000004 6E??           00027     MOVWF NUM           ;salva o valor em NUM
+                      00028  
+000006 5000           00029     MOVF NUM, 0         ;move NUM para o W
+000008 0B0F           00030     ANDLW 0x0F          ;seleciona os bits menos significativos de NUM armazenados em W
+                      00031     ;zera os bits mais significativos
+00000A 6E??           00032     MOVWF LNUM          ;salva os bits menos significativos de NUM em LNUM
+                      00033     
+00000C 5000           00034     MOVF NUM, 0         ;move NUM para o W
+00000E 0BF0           00035     ANDLW 0xF0          ;seleciona os bits mais significativos de NUM armazenados em W
+                      00036     ;zera os bits menos significativos
+000010 6E??           00037     MOVWF MNUM          ;salva os bits mais significativos de NUM em MNUM
+                      00038     
+000012 3A00           00039     SWAPF MNUM, 1       ;troca as posições dos 4 primeiros bits com os 4 ultimos bits
+                      00040     ;faz-se isso para realizar a soma com LNUM
+000014 5000           00041     MOVF MNUM, 0        ;move MNUM, depois da troca, para W
+                      00042     
+000016 2400           00043     ADDWF LNUM, 0       ;soma W com LNUM e armazena em W
+000018 6E??           00044     MOVWF RESULT        ;salva os valores de W em RESULT
+                      00045     
+00001A 0000           00046     NOP                 ;ultilizado como ponto de referencia para parar o debuger
+                      00047     
+                      00048     END
+MPASM 5.83  /HOME/GABRIEL/MPLABXPROJECTS/ATV   5-4-2019  21:38:29         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+LNUM                              00000021
+MNUM                              00000022
+NUM                               00000020
+RESULT                            00000023
+START                             00000000
+__18F4550                         00000001
+
+Errors   :     0
+Warnings :     4 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

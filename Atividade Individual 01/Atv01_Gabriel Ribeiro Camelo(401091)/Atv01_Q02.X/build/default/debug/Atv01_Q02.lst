@@ -1,0 +1,75 @@
+MPASM 5.83  /HOME/GABRIEL/MPLABXPROJECTS/ATV   5-4-2019  20:37:11         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ; TODO INSERT CONFIG CODE HERE USING CONFIG BITS GENERATOR
+                      00002 
+                      00003 VARIAVEIS UDATA_ACS 0x20
+Warning[207]: Found label after column 1. (NUM)
+000020                00004     NUM RES 1   ;variavel em q irei contar os bits
+                      00005     ;tem 8 bits 
+                      00006     
+Warning[207]: Found label after column 1. (CONT)
+000021                00007     CONT RES 1  ;variavel para contar o numero de bits 1
+                      00008     
+                      00009 RES_VECT  CODE    0x0000            ; processor reset vector
+000000 EF?? F???      00010     GOTO    START                   ; go to beginning of program
+                      00011 
+                      00012 ; TODO ADD INTERRUPTS HERE IF USED
+                      00013 
+                      00014 MAIN_PROG CODE                      ; let linker place main program
+                      00015 
+000000                00016 START
+000000 0000           00017     NOP
+                      00018     
+000002 0E33           00019     MOVLW  0x33
+000004 6E??           00020     MOVWF NUM       ;adiciona um numero arbtrario a NUM
+                      00021     
+000006 B0??           00022     BTFSC NUM, 0    ;se o bit zero de NUM for zero pula a proxima instrução
+000008 2A??           00023     INCF CONT       ;se não for zero acrescenta um em CONT
+                      00024     
+00000A B2??           00025     BTFSC NUM, 1    ;se o bit um de NUM for zero pula a proxima instrução
+00000C 2A??           00026     INCF CONT       ;se não for zero acrescenta um em CONT
+                      00027     
+00000E B4??           00028     BTFSC NUM, 2    ;se o bit doi de NUM for zero pula a proxima instrução
+000010 2A??           00029     INCF CONT       ;se não for zero acrescenta um em CONT
+                      00030     
+000012 B6??           00031     BTFSC NUM, 3    ;se o bit três de NUM for zero pula a proxima instrução
+000014 2A??           00032     INCF CONT       ;se não for zero acrescenta um em CONT
+                      00033     
+000016 B8??           00034     BTFSC NUM, 4    ;se o bit quatro de NUM for zero pula a proxima instrução
+000018 2A??           00035     INCF CONT       ;se não for zero acrescenta um em CONT
+                      00036     
+00001A BA??           00037     BTFSC NUM, 5    ;se o bit cinco de NUM for zero pula a proxima instrução
+00001C 2A??           00038     INCF CONT       ;se não for zero acrescenta um em CONT
+                      00039     
+00001E BC??           00040     BTFSC NUM, 6    ;se o bit seis de NUM for zero pula a proxima instrução
+000020 2A??           00041     INCF CONT       ;se não for zero acrescenta um em CONT
+                      00042     
+000022 BE??           00043     BTFSC NUM, 7    ;se o bit sete de NUM for zero pula a proxima instrução
+000024 2A??           00044     INCF CONT       ;se não for zero acrescenta um em CONT
+                      00045     
+                      00046     
+000026 0000           00047     NOP
+                      00048     
+                      00049     END
+MPASM 5.83  /HOME/GABRIEL/MPLABXPROJECTS/ATV   5-4-2019  20:37:11         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CONT                              00000021
+NUM                               00000020
+START                             00000000
+__18F4550                         00000001
+__DEBUG                           
+__MPLAB_DEBUGGER_SIMULATOR        1
+
+Errors   :     0
+Warnings :     2 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+
